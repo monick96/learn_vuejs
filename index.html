@@ -19,8 +19,8 @@
             <!-- place navbar here -->
         </header>
         <main>
-            <span></span>
-            <input type="text">
+            <span v-text="message"></span>
+            <input type="text" v-model="message">
     
         </main>
         <footer>
@@ -28,6 +28,19 @@
         </footer>
 
     </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        const {createApp} = Vue; //funcion que crea la applicacion vuejs//la "V" debe ser mayuscula
+        const app = createApp({
+            data() { //data() retorna toda la info de nuestra app
+                return{
+                message: "Helow everyone! with vue"
+
+                }
+            }
+        });
+        app.mount("#app")
+    </script>
 
     </script>
     <!-- Bootstrap JavaScript Libraries -->
@@ -38,7 +51,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
         </script>
-        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </body>
 
 </html>
