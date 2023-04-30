@@ -9,9 +9,13 @@ class MinvueReactive{
             if (name in target){
                 return target[name];
             }
-            console.warn("the property ",name, "dont exist");
+            console.warn("the property ",name, "do not exist");
             return "";
             
+        },
+        set(target,name,value){
+            console.log("modifing..");
+            Reflect.set(target,name,value);
         }
     });
     }
@@ -29,14 +33,25 @@ class MinvueReactive{
         document.querySelectorAll("*[m-text]").forEach(el=>{
             this.mText(el,this.$data,el.getAttribute("m-text"))
         })
+
+        document.querySelectorAll("*[m-model]").forEach(el=>{
+            const name = el.getAttribute("m-model");
+            this.pModel(el,this.$data,name)
+            el.addEventListener("input",()=>{
+                // this.$data[name] = el.value;
+                Reflect.set(this.$data,name,el.value);
+            })
+        })
     }
 
 
     mText(el,target,name){
         el.innerText = target[name];
     }
-
-    pModel(){}
+    //reflect version
+    pModel(el, target,name){
+        el.value = Reflect.get(target,name);
+    }
 }
 
 // se crea un objeto que va a retornar todos los métodos que necesitamos de nuestro mini framework, mediante el destructuring de JavaScript, en el index.html, estamos llamando al método createApp(), dicho método está dentro del objeto Minivue (Por eso usamos el destructuring al importar la fucnión en el index.html)
