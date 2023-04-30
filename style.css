@@ -38,3 +38,19 @@ header h1 {
 main {
     padding: 20px;
 }
+h3{
+margin: 2rem;
+padding: 1rem;
+border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 2px solid #35495e8a;
+-webkit-box-shadow: -11px 39px 28px -9px rgba(0,0,0,0.54);
+-moz-box-shadow: -11px 39px 28px -9px rgba(0,0,0,0.54);
+box-shadow: -11px 39px 28px -9px rgba(0,0,0,0.54);
+
+}
+input{
+    padding: 0.5rem;
+    width: 30%;
+}
