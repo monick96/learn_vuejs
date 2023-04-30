@@ -19,8 +19,8 @@
             <!-- place navbar here -->
         </header>
         <main>
-            <span v-text="message"></span>
-            <input type="text" v-model="message">
+            <span m-text="message"></span>
+            <input type="text" m-model="message">
     
         </main>
         <footer>
@@ -28,9 +28,9 @@
         </footer>
 
     </div>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./minvue.js"></script>
     <script>
-        const {createApp} = Vue; //funcion que crea la applicacion vuejs//la "V" debe ser mayuscula
+        const {createApp} = Minvue; //funcion que crea la applicacion vuejs//la "V" debe ser mayuscula
         const app = createApp({
             data() { //data() retorna toda la info de nuestra app
                 return{
@@ -39,7 +39,7 @@
                 }
             }
         });
-        app.mount("#app")
+        app.mount()
     </script>
 
     </script>
