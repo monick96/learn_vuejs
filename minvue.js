@@ -2,6 +2,18 @@
 class MinvueReactive{
     constructor(options){
     this.origen = options.data();
+
+    //destino
+    this.$data = new Proxy(this.origen,{
+        get(target,name){
+            if (name in target){
+                return target[name];
+            }
+            console.warn("the property ",name, "dont exist");
+            return "";
+            
+        }
+    });
     }
 
     //mount() se encarga de pintar todo en el documento, mediante el querySlectorAll (recuerden que aquí funcionan los selectores de CSS) es como seleccionamos a todos los elementos que tengan 
@@ -15,7 +27,7 @@ class MinvueReactive{
     //Simplemente con el innerText metemos ese nombre.
     mount(){
         document.querySelectorAll("*[m-text]").forEach(el=>{
-            this.mText(el,this.origen,el.getAttribute("m-text"))
+            this.mText(el,this.$data,el.getAttribute("m-text"))
         })
     }
 
