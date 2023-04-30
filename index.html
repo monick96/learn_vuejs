@@ -6,10 +6,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon"
+        href="https://camo.githubusercontent.com/d3c2443c6d0e490060cc9e934d1daac11393f10c6fa73d3b0b7ed0faa81c8eff/68747470733a2f2f7675656d696e692e6f72672f6c6f676f2e706e67"
+        type="image/x-icon">
 
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
 
 </head>
 
@@ -17,12 +21,24 @@
     <div id="app">
         <header>
             <!-- place navbar here -->
+            <div class="header-icon">
+                <a href="http://"><img
+                        src="https://camo.githubusercontent.com/d3c2443c6d0e490060cc9e934d1daac11393f10c6fa73d3b0b7ed0faa81c8eff/68747470733a2f2f7675656d696e692e6f72672f6c6f676f2e706e67"
+                        alt="minivue"></a>
+            </div>
+            <h1 class="text-center">Welcome to MiniVue</h1>
         </header>
         <main>
-            <span m-text="message"></span>
-            <input type="text" m-model="message">
-            <span m-text="otro_message"></span>
-    
+            <div class="container">
+                <h2 class="text-center">Interactive input</h2>
+                <div class="d-flex flex-column align-items-center">
+                    <h3><span class="mt-2" m-text="message"></span></h3>
+                    <div class="w-100"></div>
+                    <input class="mt-2" type="text" m-model="message" class="form-control">
+                    <span m-text="otro_message"></span>
+                </div>
+            </div>
+
         </main>
         <footer>
             <!-- place footer here -->
@@ -31,11 +47,11 @@
     </div>
     <script src="./minvue.js"></script>
     <script>
-        const {createApp} = Minvue; //funcion que crea la applicacion vuejs//la "V" debe ser mayuscula
+        const { createApp } = Minvue; //funcion que crea la applicacion vuejs//la "V" debe ser mayuscula
         const app = createApp({
             data() { //data() retorna toda la info de nuestra app
-                return{
-                message: "Helow everyone! with Minvue"
+                return {
+                    message: "Helow everyone! with Minvue"
 
                 }
             }
