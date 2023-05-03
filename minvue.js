@@ -65,6 +65,11 @@ class MinvueReactive{
                 Reflect.set(this.$data,name,el.value);
             })
         })
+
+        document.querySelectorAll("*[m-bind]").forEach(el=>{
+            const [attr,name] = el.getAttribute("m-bind").match(/(\w+)/g);
+            this.mBind(el,this.$data,name,attr);
+        })
     }
 
 
@@ -74,6 +79,11 @@ class MinvueReactive{
     //reflect version
     pModel(el, target,name){
         el.value = Reflect.get(target,name);
+    }
+
+    mBind(el, target,name,attr){
+        el.setAttribute(attr,
+            Reflect.get(target,name))
     }
 }
 

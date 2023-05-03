@@ -30,15 +30,19 @@
         </header>
         <main>
             <div class="container">
-                <h2 class="text-center">Interactive input</h2>
-                <div class="d-flex flex-column align-items-center">
-                    <h3><span m-text="message"></span></h3>
-                    <div class="w-100"></div>
-                    <input class="mt-1" type="text" m-model="message" class="form-control">
-                    <span m-text="otro_message"></span>
+                <div class="row">
+                    <h2 class="text-center">Interactive input</h2>
+                    <div class="col">
+                        <div class="d-flex flex-column align-items-center">
+                            <img class="main-img" m-bind = "src:image">
+                            <h3><span m-text="message"></span></h3>
+                            <div class="w-100"></div>
+                            <input class="mt-1" type="text" m-model="message" class="form-control">
+                            <span m-text="otro_message"></span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </main>
         <footer>
             <!-- place footer here -->
@@ -51,7 +55,9 @@
         const app = createApp({
             data() { //data() retorna toda la info de nuestra app
                 return {
-                    message: "Helow everyone! with Minvue"
+                    message: "Helow everyone! with Minvue",
+                    image: "https://static-00.iconduck.com/assets.00/vue-icon-512x512-ne4r9aa8.png"
+
 
                 }
             }
