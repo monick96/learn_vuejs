@@ -1,23 +1,45 @@
 //constructor de clase para los campos reactivos
 class MinvueReactive{
-    constructor(options){
-    this.origen = options.data();
+    //dependencias
+    deps = new Map();
 
-    //destino
-    this.$data = new Proxy(this.origen,{
-        get(target,name){
-            if (name in target){
-                return target[name];
+    constructor(options){
+        this.origen = options.data();
+
+        const self = this;
+        //destino
+        //el proxy nos permite observar, tambien modificar comportamiento por defecto de JS
+        this.$data = new Proxy(this.origen,{
+            get(target,name){
+                if (name in target){
+                    self.track(target,name);
+                    return target[name];
+                }
+                console.warn("the property ",name, "do not exist");
+                return "";
+                
+            },
+            set(target,name,value){
+                console.log("modifing..");
+                Reflect.set(target,name,value);
+                self.trigger(name);
             }
-            console.warn("the property ",name, "do not exist");
-            return "";
-            
-        },
-        set(target,name,value){
-            console.log("modifing..");
-            Reflect.set(target,name,value);
+        });
+    }
+
+    track(target,name){
+        if (!this.deps.has(name)){
+            const effect = () =>{
+                document.querySelectorAll(`*[m-text = ${name}]`).forEach(el =>{
+                    this.mText(el,target,name);
+                });
+            };
+            this.deps.set(name,effect);
         }
-    });
+    }
+    trigger(name){
+        const effect = this.deps.get(name);
+        effect();
     }
 
     //mount() se encarga de pintar todo en el documento, mediante el querySlectorAll (recuerden que aquí funcionan los selectores de CSS) es como seleccionamos a todos los elementos que tengan 
@@ -39,6 +61,7 @@ class MinvueReactive{
             this.pModel(el,this.$data,name)
             el.addEventListener("input",()=>{
                 // this.$data[name] = el.value;
+                //reflect version
                 Reflect.set(this.$data,name,el.value);
             })
         })
