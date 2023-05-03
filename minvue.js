@@ -36,6 +36,8 @@ class MinvueReactive{
             };
             this.deps.set(name,effect);
         }
+
+        
     }
     trigger(name){
         const effect = this.deps.get(name);
